@@ -5,6 +5,7 @@
     <router-link :to="{ name: 'about' }">About</router-link>
     <router-link to="/parent/child">Child</router-link>
     <router-link to="/named_view">命名视图</router-link>
+    <router-link to="/store">vuex</router-link>
     <img src="./assets/logo.png">
     <!-- 命名视图 -->
     <router-view/>

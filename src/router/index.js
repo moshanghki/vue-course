@@ -2,10 +2,10 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import About from 'views/About'
+import { setTitle } from '../common/util'
 
 Vue.use(Router)
-
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
@@ -65,6 +65,21 @@ export default new Router({
       props: route => ({
         food: route.query.food
       })
+    },
+    {
+      path: '/store',
+      component: () => import('views/Store'),
+      beforeEnter: (to, from, next) => {
+        window.document.title = 'store'
+        next()
+      }
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  setTitle(to.name)
+  next()
+})
+
+export default router
