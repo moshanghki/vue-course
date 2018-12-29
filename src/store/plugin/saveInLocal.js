@@ -3,5 +3,6 @@ export default store => {
   store.subscribe((mutation, state) => {
     // 提交mutation后触发
     console.log('提交了mutation')
+    console.log(mutation.type)
   })
 }

@@ -16,6 +16,8 @@
     <button @click="handleClick('type2')">跳转到argu-2</button>
     <button @click="handleClick('type3')">跳转到argu-3</button>
     <button @click="handleClick('food')">跳转到food</button>
+    <!--用户界面-->
+    <router-link to="/user">用户</router-link>
   </div>
 </template>
 

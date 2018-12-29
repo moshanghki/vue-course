@@ -36,6 +36,7 @@ const router = new Router({
       children: [
         {
           path: 'child',
+          alias: '/child',
           component: () => import('views/Child')
         }
       ]
@@ -73,6 +74,10 @@ const router = new Router({
         window.document.title = 'store'
         next()
       }
+    },
+    {
+      path: '/user',
+      component: () => import('views/User')
     }
   ]
 })

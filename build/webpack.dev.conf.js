@@ -42,6 +42,16 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     quiet: true, // necessary for FriendlyErrorsPlugin
     watchOptions: {
       poll: config.dev.poll,
+    },
+    before(app){
+      app.post('/getUserInfo', function(req, res, next) {
+        res.json({
+          code: '0',
+          data: {
+            userName: 'haopeng'
+          }
+        })
+      })
     }
   },
   plugins: [
