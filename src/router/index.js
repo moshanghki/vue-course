@@ -78,8 +78,11 @@ const router = new Router({
     {
       path: '/user',
       component: () => import('views/User')
-    }
-  ]
+    },
+    {
+      path: '/count',
+      component: () => import('views/CountTo')
+    }]
 })
 
 router.beforeEach((to, from, next) => {
