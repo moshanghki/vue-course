@@ -82,6 +82,10 @@ const router = new Router({
     {
       path: '/count',
       component: () => import('views/CountTo')
+    },
+    {
+      path: '/split-pane',
+      component: () => import('views/Split')
     }]
 })
 
