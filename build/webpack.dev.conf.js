@@ -43,16 +43,16 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     watchOptions: {
       poll: config.dev.poll,
     },
-    before(app){
-      app.post('/getUserInfo', function(req, res, next) {
-        res.json({
-          code: '0',
-          data: {
-            userName: 'haopeng'
-          }
-        })
-      })
-    }
+    // before(app){
+    //   app.post('/getUserInfo', function(req, res, next) {
+    //     res.json({
+    //       code: '0',
+    //       data: {
+    //         userName: 'haopeng'
+    //       }
+    //     })
+    //   })
+    // }
   },
   plugins: [
     new webpack.DefinePlugin({

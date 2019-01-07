@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { baseUrl } from '../config'
+import { getToken } from './util'
 
 function HttpRequest (url) {
   this.baseURL = url || baseUrl
@@ -7,8 +8,9 @@ function HttpRequest (url) {
 }
 
 HttpRequest.prototype.getInsideConfig = function () {
+  const baseurl = this.baseURL
   const config = {
-    baseURL: this.baseURL,
+    baseURL: baseurl,
     headers: {
       //
     }
@@ -21,6 +23,7 @@ HttpRequest.prototype.interceptors = function (instance, url) {
   instance.interceptors.request.use(config => {
     // 请求前控制，可以在这里添加全局loading...
     console.log('---------------------请求拦截器开始---------------------')
+    config.headers['authorization'] = getToken()
     if (!Object.keys(this.queue)) {
       // loading...
     }
@@ -34,9 +37,9 @@ HttpRequest.prototype.interceptors = function (instance, url) {
   instance.interceptors.response.use(res => {
     console.log('---------------------响应拦截器开始---------------------')
     delete this.queue[url]
-    const { data, status } = res
+    const { data } = res
     console.log('---------------------响应拦截器结束---------------------')
-    return { data, status }
+    return { data }
   }, error => {
     delete this.queue[url]
     return Promise.reject(error)

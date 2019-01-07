@@ -2,7 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import About from 'views/About'
-import { setTitle } from '../common/util'
+import { setTitle, setToken, getToken } from '../common/util'
+import store from '@/store'
 
 Vue.use(Router)
 const router = new Router({
@@ -86,12 +87,39 @@ const router = new Router({
     {
       path: '/split-pane',
       component: () => import('views/Split')
+    },
+    {
+      path: '*',
+      component: () => import('views/page_404')
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('views/login')
     }]
 })
 
 router.beforeEach((to, from, next) => {
   setTitle(to.name)
-  next()
+  const token = getToken()
+  if (token) {
+    store.dispatch('authorization', token).then(() => {
+      if (to.name === 'login') {
+        next({name: 'HelloWorld'})
+      } else {
+        next()
+      }
+    }).catch(() => {
+      setToken('')
+      next({ name: 'login' })
+    })
+  } else {
+    if (to.name === 'login') {
+      next()
+    } else {
+      next({name: 'login'})
+    }
+  }
 })
 
 export default router

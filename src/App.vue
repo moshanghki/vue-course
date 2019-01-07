@@ -7,10 +7,6 @@
     <router-link to="/named_view">命名视图</router-link>
     <router-link to="/store">vuex</router-link>
     <img src="./assets/logo.png">
-    <!-- 命名视图 -->
-    <router-view/>
-    <router-view name="email"></router-view>
-    <router-view name="tel"></router-view>
     <!-- js操作路由 -->
     <button @click="handleClick('type1')">跳转到argu-1</button>
     <button @click="handleClick('type2')">跳转到argu-2</button>
@@ -18,6 +14,10 @@
     <button @click="handleClick('food')">跳转到food</button>
     <!--用户界面-->
     <router-link to="/user">用户</router-link>
+    <!-- 命名视图 -->
+    <router-view/>
+    <router-view name="email"></router-view>
+    <router-view name="tel"></router-view>
   </div>
 </template>
 
