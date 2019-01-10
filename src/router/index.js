@@ -96,6 +96,11 @@ const router = new Router({
       path: '/login',
       name: 'login',
       component: () => import('views/login')
+    },
+    {
+      path: '/tree',
+      name: 'tree',
+      component: () => import('views/Digui')
     }]
 })
 
